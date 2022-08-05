@@ -32,7 +32,7 @@ namespace api_rest.Startup
             Configuration = configuration;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, MvcOptions mvcOptions)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_0);
 
@@ -42,6 +42,7 @@ namespace api_rest.Startup
 
             services.AddScoped<ICategoryRespository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
+            mvcOptions.EnableEndpointRouting = false; 
         }
 
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
